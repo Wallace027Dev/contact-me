@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Formulário para contato de avisos">
+    <link rel="stylesheet" href="style.css">
+    <title>Contate-nos</title>
+  </head>
+  <body>
+    <form id="contateNosForm">
+      <h1>Contate-nos</h1>
+    
+      <div class="nome__sobrenome">
+        <fieldset>
+          <label for="nome">Nome <span>*</span></label>
+          <input
+            id="nome"
+            name="nome"
+            type="text"
+            minlength="3"
+            maxlength="15"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label for="sobrenome">Sobrenome <span>*</span></label>
+          <input
+            id="sobrenome"
+            name="sobrenome"
+            type="text"
+            minlength="3"
+            required
+          />
+        </fieldset>
+      </div>
+
+      <fieldset>
+        <label for="email">Email <span>*</span></label>
+        <input type="email" name="email" id="email" required />
+      </fieldset>
+
+      <fieldset class="sexo">
+        <legend>Sexo <span>*</span></legend>
+        <div class="sexo__container">
+          <input type="radio" name="sexo" id="masculino" value="masculino" />
+          <label for="masculino">Masculino</label>
+        </div>
+        <div class="sexo__container">
+          <input type="radio" name="sexo" id="feminino" value="feminino" />
+          <label for="feminino">Feminino</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="mensagem">Mensagem <span>*</span></label>
+        <textarea name="mensagem" id="mensagem" required></textarea>
+      </fieldset>
+
+      <fieldset>
+        <input
+          type="checkbox"
+          name="consentimento"
+          id="consentimento"
+          required
+        />
+        <label for="consentimento"
+          >Eu consinto em receber o contato pelo time <span>*</span></label
+        >
+      </fieldset>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
