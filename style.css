@@ -26,15 +26,29 @@ textarea,
 select:not([type="radio"]),
 button,
 fieldset,
-.sexo__container {
+.desenvolvimento__container {
   width: 100%;
   border: none;
   font-size: 1.2rem;
 }
 
+/* Removendo estilos padrão do input */
+input[type="tel"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+  outline: none;
+}
+
+/* Removendo setas em alguns navegadores */
+input[type="tel"]::-webkit-outer-spin-button,
+input[type="tel"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 input,
 textarea,
-.sexo__container {
+.desenvolvimento__container {
   margin-top: 0.5rem;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -45,7 +59,7 @@ textarea,
 form {
   background-color: #fff;
   padding: 1.5rem;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   width: 100%;
   max-width: 720px;
 }
@@ -58,7 +72,7 @@ fieldset {
   margin: 0;
 }
 
-label span {
+span {
   color: #0c7d69;
 }
 
@@ -90,19 +104,19 @@ button {
 
 /* Flex Utilities */
 .nome__sobrenome,
-.sexo,
-.sexo__container {
+.desenvolvimento,
+.desenvolvimento__container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
   div label {
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 }
 
 .nome__sobrenome,
-.sexo {
+.desenvolvimento {
   justify-content: space-between;
 }
 
@@ -110,6 +124,8 @@ button {
 @media (max-width: 768px) {
   body {
     background-color: #fff;
+    align-items: start;
+    margin-top: 2rem;
   }
 
   form {
@@ -118,23 +134,49 @@ button {
     margin: 0.5rem;
   }
 
+  textarea {
+    height: 10rem;
+  }
+
   .nome__sobrenome {
     flex-direction: column;
+  }
+
+  .desenvolvimento {
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    margin-top: 1rem;
+  }
+
   input,
   textarea,
-  button {
+  select:not([type="radio"]),
+  button,
+  fieldset,
+  .desenvolvimento__container {
     font-size: 1rem;
   }
 
+  h1 {
+    font-size: 1.5rem;
+  }
+
   textarea {
-    height: 6rem;
+    height: 15rem;
   }
 
   button {
     height: 2.5rem;
+  }
+
+  input,
+  textarea,
+  .desenvolvimento__container {
+    margin-top: 0.25rem;
+    padding: 0.5rem 1rem;
   }
 }

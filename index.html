@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Formulário para contato de avisos">
     <link rel="stylesheet" href="style.css">
-    <title>Contate-nos</title>
+    <title>Contate-me</title>
   </head>
   <body>
     <form id="contateNosForm">
@@ -14,24 +14,11 @@
       <div class="nome__sobrenome">
         <fieldset>
           <label for="nome">Nome <span>*</span></label>
-          <input
-            id="nome"
-            name="nome"
-            type="text"
-            minlength="3"
-            maxlength="15"
-            required
-          />
+          <input id="nome" name="nome" type="text" minlength="3" maxlength="15" required />
         </fieldset>
         <fieldset>
           <label for="sobrenome">Sobrenome <span>*</span></label>
-          <input
-            id="sobrenome"
-            name="sobrenome"
-            type="text"
-            minlength="3"
-            required
-          />
+          <input id="sobrenome" name="sobrenome" type="text" minlength="3" required />
         </fieldset>
       </div>
 
@@ -40,15 +27,28 @@
         <input type="email" name="email" id="email" required />
       </fieldset>
 
-      <fieldset class="sexo">
-        <legend>Sexo <span>*</span></legend>
-        <div class="sexo__container">
-          <input type="radio" name="sexo" id="masculino" value="masculino" />
-          <label for="masculino">Masculino</label>
+      <fieldset>
+        <label for="whatsapp">Whatsapp <span>*</span></label>
+        <input type="tel" name="whatsapp" id="whatsapp" pattern="\d{10,15}" inputmode="numeric" autocomplete="tel" maxlength="11" required />
+      </fieldset>
+
+      <fieldset class="desenvolvimento">
+        <legend>Desenvolvimento <span>*</span></legend>
+        <div class="desenvolvimento__container">
+          <input type="radio" name="desenvolvimento" id="site" value="site" />
+          <label for="site">Site</label>
         </div>
-        <div class="sexo__container">
-          <input type="radio" name="sexo" id="feminino" value="feminino" />
-          <label for="feminino">Feminino</label>
+        <div class="desenvolvimento__container">
+          <input type="radio" name="desenvolvimento" id="sistema" value="sistema" />
+          <label for="sistema">Sistema</label>
+        </div>
+        <div class="desenvolvimento__container">
+          <input type="radio" name="desenvolvimento" id="mobile" value="mobile" />
+          <label for="mobile">Mobile</label>
+        </div>
+        <div class="desenvolvimento__container">
+          <input type="radio" name="desenvolvimento" id="outro" value="outro" />
+          <label for="outro">Outro</label>
         </div>
       </fieldset>
 
@@ -58,15 +58,8 @@
       </fieldset>
 
       <fieldset>
-        <input
-          type="checkbox"
-          name="consentimento"
-          id="consentimento"
-          required
-        />
-        <label for="consentimento"
-          >Eu consinto em receber o contato pelo time <span>*</span></label
-        >
+        <input type="checkbox" name="consentimento" id="consentimento" required />
+        <label for="consentimento">Eu consinto em receber o contato <span>*</span></label>
       </fieldset>
 
       <button type="submit">Enviar</button>
