@@ -5,7 +5,6 @@ document.getElementById("whatsapp").addEventListener("input", function () {
   this.value = this.value.replace(/\D/g, "");
 });
 
-
 document
   .querySelector(".desenvolvimento")
   .addEventListener("click", mostrarCampoDeMensagem);
@@ -35,14 +34,47 @@ function manipuladorDeEnvio(event) {
   const desenvolvimento = document.querySelector(desenvolvimentoInputs)?.value;
   const mensagemValor = mensagem.value.trim();
 
-  const servico = {
-    nome,
-    sobrenome,
-    email,
-    whatsapp,
-    desenvolvimento,
-    mensagemValor
-  };
+  enviarMensagemDeWhatsapp(nome, desenvolvimento, mensagemValor);
 
-  console.log(servico);
+  enviarEmailFetch(
+    nome + " " + sobrenome,
+    email,
+    mensagemValor,
+    desenvolvimento
+  );
+}
+
+function enviarEmailFetch(nome, email, mensagem, desenvolvimento) {
+  const url = "https://contact-me-api-ten.vercel.app/send-email";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: nome,
+      email: email,
+      message: mensagem ? mensagem : "Não foi preenchido"
+    })
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Email enviado com sucesso!");
+      } else {
+        console.error("Erro ao enviar o email.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error ao enviar o email:", error);
+    });
+}
+
+function enviarMensagemDeWhatsapp(nome, desenvolvimento, mensagemValor) {
+  const texto = `Olá, meu nome é ${nome}, sou o Wallace. Estou interessado em ${desenvolvimento}. Mensagem: ${mensagemValor}`;
+
+  const url = `https://api.whatsapp.com/send?phone=5583999999999&text=${texto}`;
+
+  window.open(url, "_blank");
+  formulario.reset();
 }
