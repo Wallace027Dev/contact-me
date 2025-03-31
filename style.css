@@ -33,7 +33,10 @@ fieldset,
 }
 
 /* Removendo estilos padrão do input */
-input[type="tel"] {
+input[type="tel"],
+input[type="text"],
+input[type="email"],
+textarea {
   -webkit-appearance: none;
   -moz-appearance: textfield;
   appearance: none;
@@ -118,6 +121,15 @@ button {
 .nome__sobrenome,
 .desenvolvimento {
   justify-content: space-between;
+}
+
+/* Renderização condicional de Textarea de Mensagens */
+.mensagem__container {
+  display: none;
+}
+
+.mensagem__container.active {
+  display: flex;
 }
 
 /* Responsive Styles */
