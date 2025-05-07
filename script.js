@@ -16,8 +16,10 @@ function mostrarCampoDeMensagem() {
   const valorSelecionado = inputSelecionado?.value;
   const container = document.querySelector(".mensagem__container");
 
-  container.style.display = valorSelecionado === "outro" ? "block" : "none";
-  console.log(container.style.display);
+  const deveMostrar = valorSelecionado === "outro";
+  container.style.display = deveMostrar ? "block" : "none";
+
+  mensagem.required = deveMostrar;
 }
 
 function manipuladorDeEnvio(event) {
@@ -34,7 +36,7 @@ function manipuladorDeEnvio(event) {
   const desenvolvimento = document.querySelector(desenvolvimentoInputs)?.value;
   const mensagemValor = mensagem.value.trim();
 
-  enviarMensagemDeWhatsapp(nome, desenvolvimento, mensagemValor);
+  enviarMensagemDeWhatsapp(nome, whatsapp, desenvolvimento, mensagemValor);
 
   enviarEmailFetch(
     nome + " " + sobrenome,
@@ -61,20 +63,41 @@ function enviarEmailFetch(nome, email, mensagem, desenvolvimento) {
     .then((response) => {
       if (response.ok) {
         console.log("Email enviado com sucesso!");
+        alert("Email enviado com sucesso!");
       } else {
-        console.error("Erro ao enviar o email.");
+        throw new Error("Erro ao enviar o email.");
       }
     })
     .catch((error) => {
-      console.error("Error ao enviar o email:", error);
+      console.error("Erro ao enviar o email:", error);
+      alert("Ocorreu um erro ao enviar o email. Tente novamente mais tarde.");
     });
 }
 
-function enviarMensagemDeWhatsapp(nome, desenvolvimento, mensagemValor) {
-  const texto = `Olá, meu nome é ${nome}, sou o Wallace. Estou interessado em ${desenvolvimento}. Mensagem: ${mensagemValor}`;
+function enviarMensagemDeWhatsapp(
+  nome,
+  whatsap,
+  desenvolvimento,
+  mensagemValor
+) {
+  try {
+    if (!nome || !whatsap || !desenvolvimento) {
+      throw new Error(
+        "Informações obrigatórias para o WhatsApp não preenchidas."
+      );
+    }
 
-  const url = `https://api.whatsapp.com/send?phone=5583999999999&text=${texto}`;
+    const texto = `Olá, meu nome é ${nome}, sou o Wallace. Estou interessado em ${desenvolvimento}. Mensagem: ${
+      mensagemValor || "Vamos conversar!"
+    }`;
+    const url = `https://api.whatsapp.com/send?phone=${whatsap}&text=${encodeURIComponent(
+      texto
+    )}`;
 
-  window.open(url, "_blank");
-  formulario.reset();
+    window.open(url, "_blank");
+    formulario.reset();
+  } catch (error) {
+    console.error("Erro ao enviar mensagem pelo WhatsApp:", error);
+    alert("Erro ao abrir o WhatsApp. Verifique os dados e tente novamente.");
+  }
 }
