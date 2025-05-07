@@ -3,7 +3,7 @@ Um formulário moderno com integração ao WhatsApp e envio de e-mail por API.
 
 Este é um projeto de formulário de contato responsivo, desenvolvido com HTML, CSS e JavaScript. Ele permite que os usuários enviem mensagens por e-mail ou WhatsApp, com base nas informações fornecidas no formulário.
 
-<img src="./preview.png" alt="preview" style="width: 100%; height: 100vh; object-fit: cover;" />
+![preview](./images/preview.png)
 
 ## 🔗 Acesse o projeto
 [👉 Testar agora](https://contato.wallacevieira.dev/)
