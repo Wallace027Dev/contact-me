@@ -34,19 +34,38 @@ function manipuladorDeEnvio(event) {
   const email = document.getElementById("email").value.trim();
   const whatsapp = document.getElementById("whatsapp").value.trim();
   const desenvolvimento = document.querySelector(desenvolvimentoInputs)?.value;
-  const mensagemValor = mensagem.value.trim();
+  let mensagemValor = mensagem.value.trim();
 
-  enviarMensagemDeWhatsapp(nome, whatsapp, desenvolvimento, mensagemValor);
+  if (!mensagemValor) {
+    switch (desenvolvimento) {
+      case "site":
+        mensagemValor =
+          "Gostaria de criar um site e entender como podemos começar.";
+        break;
+      case "sistema":
+        mensagemValor =
+          "Gostaria de criar um sistema personalizado para meu negócio.";
+        break;
+      case "mobile":
+        mensagemValor =
+          "Quero desenvolver um aplicativo mobile. Podemos conversar?";
+        break;
+      default:
+        mensagemValor = "Vamos conversar melhor sobre meu projeto!";
+        break;
+    }
+  }
+
+  enviarMensagemDeWhatsapp(nome, whatsapp, mensagemValor, desenvolvimento);
 
   enviarEmailFetch(
     nome + " " + sobrenome,
     email,
-    mensagemValor,
-    desenvolvimento
+    mensagemValor
   );
 }
 
-function enviarEmailFetch(nome, email, mensagem, desenvolvimento) {
+function enviarEmailFetch(nome, email, mensagem) {
   const url = "https://contact-me-api-ten.vercel.app/send-email";
 
   fetch(url, {
@@ -77,17 +96,16 @@ function enviarEmailFetch(nome, email, mensagem, desenvolvimento) {
 function enviarMensagemDeWhatsapp(
   nome,
   whatsap,
-  desenvolvimento,
   mensagemValor
 ) {
   try {
-    if (!nome || !whatsap || !desenvolvimento) {
+    if (!nome || !whatsap) {
       throw new Error(
         "Informações obrigatórias para o WhatsApp não preenchidas."
       );
     }
 
-    const texto = `Olá, meu nome é ${nome}, sou o Wallace. Estou interessado em ${desenvolvimento}. Mensagem: ${
+    const texto = `Olá, meu nome é ${nome}, sou o Wallace. Estou interessado em fazer um orçamento. ${
       mensagemValor || "Vamos conversar!"
     }`;
     const url = `https://api.whatsapp.com/send?phone=${whatsap}&text=${encodeURIComponent(
